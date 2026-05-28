@@ -77,7 +77,9 @@ export async function POST(request: Request) {
 
   try {
     const { text } = await generateText({
-      model: "anthropic/claude-sonnet-4-6",
+      // claude-haiku-4-5 töötab AI Gateway tasuta krediidiga. Parema kvaliteedi
+      // jaoks vaheta "anthropic/claude-sonnet-4-6" vastu (vajab makstud krediiti).
+      model: "anthropic/claude-haiku-4-5",
       prompt: `Sa oled Eesti kinnisvaraekspert. Kirjuta soe, professionaalne ja müüv kuulutuse kirjeldus järgmise kinnisvara kohta:\n\n${details}\n\nKirjeldus peaks olema 150-200 sõna, eesti keeles, positiivne toon, mainima peamisi eeliseid. Ära kasuta turunduslikke klišeesid ega liialdusi. Tagasta ainult kirjeldus, ilma pealkirja või lisamärkusteta.`,
     });
 
