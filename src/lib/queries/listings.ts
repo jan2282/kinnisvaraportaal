@@ -140,6 +140,52 @@ export async function getSimilarListings(
   return (data ?? []) as ListingCardData[];
 }
 
+export type SellerListing = Listing & {
+  listing_images: Pick<ListingImage, "url" | "is_cover" | "order_index">[];
+  inquiries: { count: number }[];
+  offers: { count: number }[];
+};
+
+// Müüja kõik kuulutused koos päringute/pakkumiste arvuga (dashboard)
+export async function getSellerListings(
+  sellerId: string
+): Promise<SellerListing[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("listings")
+    .select(
+      "*, listing_images(url, is_cover, order_index), inquiries(count), offers(count)"
+    )
+    .eq("seller_id", sellerId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("getSellerListings error:", error.message);
+    return [];
+  }
+  return (data ?? []) as unknown as SellerListing[];
+}
+
+// Kasutaja salvestatud kuulutused (lemmikud)
+export async function getSavedListings(
+  userId: string
+): Promise<ListingCardData[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("saved_listings")
+    .select("listing:listings(*, listing_images(url, is_cover, order_index))")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("getSavedListings error:", error.message);
+    return [];
+  }
+  return (data ?? [])
+    .map((row) => (row as unknown as { listing: ListingCardData }).listing)
+    .filter(Boolean);
+}
+
 export function coverImage(listing: ListingCardData): string | null {
   const imgs = listing.listing_images ?? [];
   if (imgs.length === 0) return null;
