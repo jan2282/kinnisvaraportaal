@@ -73,7 +73,7 @@ export default async function SonumidPage({
                 return (
                   <Link
                     key={conv.id}
-                    href={`/sõnumid?c=${conv.id}`}
+                    href={`/sonumid?c=${conv.id}`}
                     className={cn(
                       "flex gap-3 border-b p-3 transition-colors hover:bg-secondary/50",
                       isActive && "bg-secondary"
@@ -131,7 +131,7 @@ export default async function SonumidPage({
             <>
               <div className="flex items-center gap-3 border-b p-3">
                 <Link
-                  href="/sõnumid"
+                  href="/sonumid"
                   className="flex size-9 items-center justify-center rounded-full hover:bg-secondary md:hidden"
                 >
                   <ChevronLeft className="size-5" />

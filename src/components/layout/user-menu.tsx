@@ -35,22 +35,31 @@ function initials(name: string | null, email: string) {
 
 const MENU_LINKS = [
   { href: "/minu-kodu", label: "Minu kuulutused", icon: LayoutDashboard },
-  { href: "/sõnumid", label: "Sõnumid", icon: MessageSquare },
+  { href: "/sonumid", label: "Sõnumid", icon: MessageSquare },
   { href: "/pakkumised", label: "Pakkumised", icon: HandCoins },
   { href: "/vaatamised", label: "Vaatamised", icon: CalendarDays },
   { href: "/profiil", label: "Profiil", icon: User },
 ];
 
-export function UserMenu({ profile }: { profile: Profile }) {
+export function UserMenu({
+  profile,
+  unread = 0,
+}: {
+  profile: Profile;
+  unread?: number;
+}) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      <DropdownMenuTrigger className="relative rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <Avatar className="size-9 border">
           {profile.avatar_url && <AvatarImage src={profile.avatar_url} alt="" />}
           <AvatarFallback className="bg-primary/10 text-sm font-medium text-primary">
             {initials(profile.full_name, profile.email)}
           </AvatarFallback>
         </Avatar>
+        {unread > 0 && (
+          <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full border-2 border-background bg-primary" />
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex flex-col">
@@ -64,6 +73,11 @@ export function UserMenu({ profile }: { profile: Profile }) {
           <DropdownMenuItem key={link.href} render={<Link href={link.href} />}>
             <link.icon className="size-4" />
             {link.label}
+            {link.href === "/sonumid" && unread > 0 && (
+              <span className="ml-auto flex min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground">
+                {unread > 9 ? "9+" : unread}
+              </span>
+            )}
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />

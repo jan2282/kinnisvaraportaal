@@ -65,8 +65,8 @@ export async function createInquiry(input: unknown): Promise<ActionResult> {
     return { ok: false, error: "Sõnumi saatmine ebaõnnestus" };
   }
 
-  revalidatePath("/sõnumid");
-  return { ok: true, redirect: "/sõnumid" };
+  revalidatePath("/sonumid");
+  return { ok: true, redirect: "/sonumid" };
 }
 
 // Tee pakkumine

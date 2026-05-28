@@ -9,11 +9,11 @@ const NAV_ITEMS = [
   { href: "/", label: "Avaleht", icon: Home },
   { href: "/kuulutused", label: "Otsing", icon: Search },
   { href: "/lisa-kuulutus", label: "Lisa", icon: Plus, highlight: true },
-  { href: "/sõnumid", label: "Sõnumid", icon: MessageSquare },
+  { href: "/sonumid", label: "Sõnumid", icon: MessageSquare },
   { href: "/profiil", label: "Profiil", icon: User },
 ];
 
-export function MobileNav() {
+export function MobileNav({ unread = 0 }: { unread?: number }) {
   const pathname = usePathname();
 
   return (
@@ -42,6 +42,8 @@ export function MobileNav() {
             );
           }
 
+          const showBadge = item.href === "/sonumid" && unread > 0;
+
           return (
             <Link
               key={item.href}
@@ -51,7 +53,14 @@ export function MobileNav() {
                 active ? "text-primary" : "text-muted-foreground"
               )}
             >
-              <item.icon className={cn("size-5", active && "fill-primary/10")} />
+              <span className="relative">
+                <item.icon className={cn("size-5", active && "fill-primary/10")} />
+                {showBadge && (
+                  <span className="absolute -right-2 -top-1.5 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold text-primary-foreground">
+                    {unread > 9 ? "9+" : unread}
+                  </span>
+                )}
+              </span>
               {item.label}
             </Link>
           );

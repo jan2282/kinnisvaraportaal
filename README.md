@@ -32,7 +32,21 @@ Avab `http://localhost:3000`.
 | `STRIPE_SECRET_KEY` | Stripe test mode secret |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe test mode publishable |
 
+## Andmebaas ja seemned
+
+```bash
+pnpm db:migrate   # rakendab supabase/migrations/*.sql
+pnpm db:seed      # loob 2 demo müüjat + 6 Tallinna kuulutust
+```
+
+Demo müüja login: `kodu.seed.mari@gmail.com` / `kodu-demo-1234`
+
 ## Deploy
 
 `main` haru push → automaatne production deploy Vercel'i.
 Iga PR → preview URL.
+
+## Märkused
+
+- AI kirjelduse genereerimine vajab Vercel kontol kehtivat krediitkaarti (AI Gateway nõue).
+- Stripe on test-mode skelett; makset ei nõuta kuulutuse avaldamiseks.

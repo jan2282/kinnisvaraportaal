@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Plus, Eye, MessageSquare, HandCoins, ImageOff, Home } from "lucide-react";
@@ -7,6 +8,7 @@ import { getSellerListings, coverImage } from "@/lib/queries/listings";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/listings/status-badge";
 import { ListingRowActions } from "./listing-row-actions";
+import { BoostButton, PaymentToast } from "./boost-button";
 import { formatPrice } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Minu kuulutused" };
@@ -17,6 +19,9 @@ export default async function MinuKoduPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <Suspense>
+        <PaymentToast />
+      </Suspense>
       <div className="mb-8 flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Minu kuulutused</h1>
@@ -101,6 +106,7 @@ export default async function MinuKoduPage() {
                 </div>
 
                 <div className="flex items-center gap-2 self-end sm:self-center">
+                  <BoostButton listingId={listing.id} />
                   <Button
                     variant="outline"
                     size="sm"

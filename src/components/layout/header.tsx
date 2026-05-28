@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Home, Plus } from "lucide-react";
 import { getProfile } from "@/lib/auth";
+import { getTotalUnread } from "@/lib/queries/conversations";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "./search-bar";
 import { UserMenu } from "./user-menu";
 
 export async function Header() {
   const profile = await getProfile();
+  const unread = profile ? await getTotalUnread(profile.id) : 0;
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-md">
@@ -34,7 +36,7 @@ export async function Header() {
           </Button>
 
           {profile ? (
-            <UserMenu profile={profile} />
+            <UserMenu profile={profile} unread={unread} />
           ) : (
             <>
               <Button variant="ghost" render={<Link href="/sisene" />}>

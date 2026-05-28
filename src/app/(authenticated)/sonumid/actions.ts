@@ -36,7 +36,7 @@ export async function sendMessage(
   });
   if (error) return { ok: false, error: "Saatmine ebaõnnestus" };
 
-  revalidatePath("/sõnumid");
+  revalidatePath("/sonumid");
   return { ok: true };
 }
 
@@ -56,6 +56,6 @@ export async function markConversationRead(
     .eq("is_read", false);
   if (error) return { ok: false, error: error.message };
 
-  revalidatePath("/sõnumid");
+  revalidatePath("/sonumid");
   return { ok: true };
 }
