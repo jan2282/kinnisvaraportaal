@@ -634,7 +634,7 @@ function YesNo({ control, name, label, tip }: { control: any; name: keyof FormSt
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">{label}</span>
             <Tooltip>
-              <TooltipTrigger render={<span className="text-muted-foreground" />}>
+              <TooltipTrigger render={<span className="cursor-help text-muted-foreground" />}>
                 <Info className="size-4" />
               </TooltipTrigger>
               <TooltipContent className="max-w-xs">{tip}</TooltipContent>

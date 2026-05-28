@@ -57,7 +57,7 @@ export function ListingActions({
   if (!isLoggedIn) {
     return (
       <div className="flex flex-col gap-2">
-        <Button size="lg" render={<Link href="/sisene" />}>
+        <Button size="lg" nativeButton={false} render={<Link href="/sisene" />}>
           Logi sisse, et ühendust võtta
         </Button>
         <p className="text-center text-xs text-muted-foreground">

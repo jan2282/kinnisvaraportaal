@@ -29,7 +29,7 @@ export default async function MinuKoduPage() {
             Halda oma müügilolevat kinnisvara
           </p>
         </div>
-        <Button render={<Link href="/lisa-kuulutus" />}>
+        <Button nativeButton={false} render={<Link href="/lisa-kuulutus" />}>
           <Plus className="size-4" /> Lisa kuulutus
         </Button>
       </div>
@@ -45,7 +45,7 @@ export default async function MinuKoduPage() {
               Loo oma esimene kuulutus ja jõua otse ostjateni.
             </p>
           </div>
-          <Button render={<Link href="/lisa-kuulutus" />}>
+          <Button nativeButton={false} render={<Link href="/lisa-kuulutus" />}>
             <Plus className="size-4" /> Lisa esimene kuulutus
           </Button>
         </div>
@@ -110,7 +110,7 @@ export default async function MinuKoduPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    render={<Link href={`/lisa-kuulutus?edit=${listing.id}`} />}
+                    nativeButton={false} render={<Link href={`/lisa-kuulutus?edit=${listing.id}`} />}
                   >
                     Muuda
                   </Button>

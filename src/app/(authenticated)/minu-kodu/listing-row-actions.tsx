@@ -47,7 +47,7 @@ export function ListingRowActions({
         <span className="sr-only">Tegevused</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuItem render={<Link href={`/lisa-kuulutus?edit=${listingId}`} />}>
+        <DropdownMenuItem nativeButton={false} render={<Link href={`/lisa-kuulutus?edit=${listingId}`} />}>
           <Pencil className="size-4" /> Muuda
         </DropdownMenuItem>
 

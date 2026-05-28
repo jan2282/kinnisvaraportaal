@@ -29,7 +29,7 @@ export async function Header() {
           <Button
             variant="default"
             className="hidden sm:inline-flex"
-            render={<Link href="/lisa-kuulutus" />}
+            nativeButton={false} render={<Link href="/lisa-kuulutus" />}
           >
             <Plus className="size-4" />
             Lisa kuulutus
@@ -39,13 +39,13 @@ export async function Header() {
             <UserMenu profile={profile} unread={unread} />
           ) : (
             <>
-              <Button variant="ghost" render={<Link href="/sisene" />}>
+              <Button variant="ghost" nativeButton={false} render={<Link href="/sisene" />}>
                 Logi sisse
               </Button>
               <Button
                 variant="outline"
                 className="hidden sm:inline-flex"
-                render={<Link href="/registreeri" />}
+                nativeButton={false} render={<Link href="/registreeri" />}
               >
                 Registreeru
               </Button>

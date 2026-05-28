@@ -31,7 +31,7 @@ export function SellerOfferActions({
 
   if (status === "accepted") {
     return (
-      <Button size="sm" render={<Link href={`/tehing/${offerId}`} />}>
+      <Button size="sm" nativeButton={false} render={<Link href={`/tehing/${offerId}`} />}>
         Vaata tehingut <ArrowRight className="size-4" />
       </Button>
     );
@@ -71,7 +71,7 @@ export function BuyerOfferActions({
 
   if (status === "accepted") {
     return (
-      <Button size="sm" render={<Link href={`/tehing/${offerId}`} />}>
+      <Button size="sm" nativeButton={false} render={<Link href={`/tehing/${offerId}`} />}>
         Vaata tehingut <ArrowRight className="size-4" />
       </Button>
     );

@@ -84,10 +84,10 @@ export default async function LandingPage() {
             tehing turvaliselt notari juures.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" render={<Link href="/lisa-kuulutus" />}>
+            <Button size="lg" nativeButton={false} render={<Link href="/lisa-kuulutus" />}>
               Hakka müüma
             </Button>
-            <Button size="lg" variant="outline" render={<Link href="/kuulutused" />}>
+            <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/kuulutused" />}>
               Otsi kinnisvara
             </Button>
           </div>
@@ -198,7 +198,7 @@ export default async function LandingPage() {
           <Button
             size="lg"
             className="bg-gold text-gold-foreground hover:bg-gold/90"
-            render={<Link href="/lisa-kuulutus" />}
+            nativeButton={false} render={<Link href="/lisa-kuulutus" />}
           >
             Lisa kuulutus tasuta
           </Button>

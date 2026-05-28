@@ -70,7 +70,7 @@ export function UserMenu({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         {MENU_LINKS.map((link) => (
-          <DropdownMenuItem key={link.href} render={<Link href={link.href} />}>
+          <DropdownMenuItem key={link.href} nativeButton={false} render={<Link href={link.href} />}>
             <link.icon className="size-4" />
             {link.label}
             {link.href === "/sonumid" && unread > 0 && (

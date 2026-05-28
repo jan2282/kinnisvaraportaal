@@ -61,10 +61,10 @@ export default function KuidasToimibPage() {
       </div>
 
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Button size="lg" render={<Link href="/lisa-kuulutus" />}>
+        <Button size="lg" nativeButton={false} render={<Link href="/lisa-kuulutus" />}>
           Hakka müüma
         </Button>
-        <Button size="lg" variant="outline" render={<Link href="/kuulutused" />}>
+        <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/kuulutused" />}>
           Otsi kinnisvara
         </Button>
       </div>
