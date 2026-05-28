@@ -1,5 +1,10 @@
 // Käsitsi kirjutatud andmebaasi tüübid (vastavad supabase/migrations/0001_init.sql).
 // Hoia sünkroonis migratsiooniga.
+//
+// NB: kasuta `type` (mitte `interface`) ridade/tabelite jaoks. supabase-js nõuab,
+// et Row/Insert/Update oleksid määratavad `Record<string, unknown>`-iks; `interface`
+// seda pole (puudub implitsiitne index signature), mille tõttu klient langeb tagasi
+// `never` tüüpidele ja kõik päringud kaotavad tüübid.
 
 export type UserRole = "buyer" | "seller" | "both";
 export type ListingType = "apartment" | "house" | "land" | "commercial";
@@ -11,7 +16,7 @@ export type ViewingStatus = "pending" | "confirmed" | "cancelled";
 export type BookingStatus = "requested" | "confirmed" | "completed";
 export type EnergyClass = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
 
-export interface Profile {
+export type Profile = {
   id: string;
   email: string;
   full_name: string | null;
@@ -21,7 +26,7 @@ export interface Profile {
   created_at: string;
 }
 
-export interface Listing {
+export type Listing = {
   id: string;
   seller_id: string;
   title: string;
@@ -48,7 +53,7 @@ export interface Listing {
   updated_at: string;
 }
 
-export interface ListingImage {
+export type ListingImage = {
   id: string;
   listing_id: string;
   url: string;
@@ -57,13 +62,13 @@ export interface ListingImage {
   created_at: string;
 }
 
-export interface ListingFeature {
+export type ListingFeature = {
   id: string;
   listing_id: string;
   feature: string;
 }
 
-export interface Inquiry {
+export type Inquiry = {
   id: string;
   listing_id: string;
   buyer_id: string;
@@ -73,7 +78,7 @@ export interface Inquiry {
   created_at: string;
 }
 
-export interface Message {
+export type Message = {
   id: string;
   inquiry_id: string;
   sender_id: string;
@@ -82,14 +87,14 @@ export interface Message {
   created_at: string;
 }
 
-export interface ClosingProgress {
+export type ClosingProgress = {
   notary?: boolean;
   preliminary_contract?: boolean;
   notarial_contract?: boolean;
   land_registry?: boolean;
 }
 
-export interface Offer {
+export type Offer = {
   id: string;
   listing_id: string;
   buyer_id: string;
@@ -102,7 +107,7 @@ export interface Offer {
   updated_at: string;
 }
 
-export interface Viewing {
+export type Viewing = {
   id: string;
   listing_id: string;
   buyer_id: string;
@@ -113,7 +118,7 @@ export interface Viewing {
   created_at: string;
 }
 
-export interface PhotographerBooking {
+export type PhotographerBooking = {
   id: string;
   listing_id: string | null;
   seller_id: string;
@@ -126,7 +131,7 @@ export interface PhotographerBooking {
   created_at: string;
 }
 
-export interface SavedListing {
+export type SavedListing = {
   id: string;
   user_id: string;
   listing_id: string;
@@ -140,7 +145,7 @@ type Update<T> = Partial<T>;
 
 type TableDef<R, I, U> = { Row: R; Insert: I; Update: U; Relationships: [] };
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       profiles: TableDef<
